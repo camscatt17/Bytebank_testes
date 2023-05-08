@@ -19,5 +19,34 @@ class TestClass:
         camila = funcionario #Given
         esperado = 'Santos'
         resultado = camila.sobrenome() #When
+        assert resultado == esperado #Then
+
+    def test_quando_decrescimo_salario_recebe_100000_deve_retornar_90000(self):
+        entrada_nome = 'Paulo Bragança'
+        entrada_salario = 100000 #Given
+        esperado = 90000
+
+        funcionario_teste = Funcionario(entrada_nome, '11/11/2000', entrada_salario)
+
+        funcionario_teste.decrescimo_salario() #When
+        resultado = funcionario_teste.salario
 
         assert resultado == esperado #Then
+
+    def test_quando_calcular_bonus_recebe_1000_deve_retornar_100(self):
+        entrada_salario = 1000  # Given
+        esperado = 100
+
+        funcionario_teste = Funcionario('Teste', '11/11/2000', entrada_salario)
+        resultado = funcionario_teste.calcular_bonus() #When
+
+        assert resultado == esperado  # Then
+
+    def test_quando_calcular_bonus_recebe_100000000_deve_retornar_exception(self):
+        with pytest.raises(Exception):
+            entrada_salario = 100000000 # Given
+
+            funcionario_teste = Funcionario('Teste', '11/11/2000', entrada_salario)
+            resultado = funcionario_teste.calcular_bonus()  # When
+
+            assert resultado # Then
